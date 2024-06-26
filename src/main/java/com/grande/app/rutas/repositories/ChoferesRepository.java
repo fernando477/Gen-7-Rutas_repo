@@ -39,12 +39,13 @@ public class ChoferesRepository implements IRepository<Chofer>{
             stmt.setLong(1,id);
             try (ResultSet rs = stmt.executeQuery()){
                 if (rs.next()){
-                    chofer = this.getChofer();
+                    chofer = this.getChofer(rs);
+                    choferes.add(a);
                 }
             }
 
         }
-        return 
+        return chofer;
     }
 
     @Override
