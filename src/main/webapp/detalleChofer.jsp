@@ -1,10 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*" %>
 <%@page import="com.grande.app.rutas.models.*" %>
+<%@page import="java.time.format.*" %>
 
 <%
-//recuperamos la lista de choferes que seteamos en el request desde el servlet
-List<Chofer> choferes =  (List<Chofer>) request.getAttribute("choferes");
+Chofer chofer = (Chofer) request.getAttribute("chofer");
+String fecha = chofer.getFechaNacimiento() != null ? chofer.getFechaNacimiento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "";
+Boolean estado = chofer.getDisponibilidad();
+String disponible = estado == true ? "Disponible" : "No Disponible";
 %>
 
 
@@ -76,57 +79,27 @@ List<Chofer> choferes =  (List<Chofer>) request.getAttribute("choferes");
 
 
  <div class="container">
+
          <div class="row">
-             <div class="col-6">
-                 <h2>listado De choferes</h2>
-             </div>
-             <div class="com-6">
-<a href="<%=request.getContextPath()%>/choferes/alta" class="btn btn-success">Alta chofer</a>             </div>
+<div class="col-12">
+    <div class="card border">
+        <div class="card header">
+            <h3><strong>Detalle de chofer</strong></h3>
 
-         </div>
-         <div class="row">
-             <div class="col-12">
-                 <div class="table-responsive">
-                     <table class="table table-border table-striped" width="100%" cellspacing="0">
-                         <thead>
-                             <tr>
-                                 <th>Id</th>
-                                 <th>nombre</th>
-                                 <th>Ap. Paterno</th>
-                                 <th>Ap. Materno</th>
-                                 <th>licencia</th>
-                                 <th>Telefono</th>
-                                 <th>cadena</th>
-                                 <th>cadena</th>
-                                 <th>cadena</th>
-                             </tr>
-                         </thead>
-                         <tbody>
-                             <% for(Chofer c: choferes){ %>
-                                 <tr>
-                                     <td><%=c.getId()%></td>
-                                     <td><%=c.getNombre()%></td>
-                                     <td><%=c.getApPaterno()%></td>
-                                     <td><%=c.getApMaterno()%></td>
-                                     <td><%=c.getLicencias()%></td>
-                                     <td><%=c.getTelefono()%></td>
-                                     <td>
-                                         <a href="<%=request.getContextPath()%>/choferes/detalle?id=<%=c.getId()%>" class="btn btn-success">Detalle</a>
-                                     </td>
-                                     <td>
-                                         <a href="<%=request.getContextPath()%>/choferes/editar?id=<%=c.getId()%>" class="btn btn-primary">Editar</a>
-                                     </td>
-                                     <td>
-                                         <a href="<%=request.getContextPath()%>/choferes/eliminar?id=<%=c.getId()%>" class="btn btn-danger">Eliminar</a>
-                                     </td>
-                                 </tr>
-                                 <% } %>
-
-                         </tbody>
-
-                     </table>
-                 </div>
-             </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Nombre: </strong><%= chofer.getNombre() %></lis>
+            <li class="list-group-item"><strong>Ap. paterno: </strong><%= chofer.getApPaterno() %></lis>
+            <li class="list-group-item"><strong>Ap. Materno: </strong><%= chofer.getApMaterno() %></lis>
+            <li class="list-group-item"><strong>Licencia: </strong><%= chofer.getLicencias() %></lis>
+            <li class="list-group-item"><strong>Telefono: </strong><%= chofer.getTelefono() %></lis>
+            <li class="list-group-item"><strong>Fecha Nacimiento: </strong><%= fecha %></lis>
+            <li class="list-group-item"><strong>Disponibilidad: </strong><%= disponible %></lis>
+        </ul>
+    </div>
+</div>
          </div>
 
      </div>

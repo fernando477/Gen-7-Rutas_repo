@@ -82,6 +82,8 @@ public class AltaChoferServlet extends HttpServlet {
             chofer.setFechaNacimiento(fecha);
             chofer.setDisponibilidad(habilitar);
             service.guardar(chofer);
+            
+
         }else{
             req.setAttribute("error", errores);
             getServletContext().getRequestDispatcher("/altaChofer.jsp").forward(req,resp);

@@ -35,16 +35,17 @@ public class ChoferesRepository implements IRepository<Chofer>{
     @Override
     public Chofer getById(Long id) throws SQLException {
         Chofer chofer = null;
-        try (PreparedStatement stmt = conn.prepareStatement("SELECT * FROM choferes WHILE ID_CHOFER = ?");){
+        try (PreparedStatement stmt=conn.prepareStatement("SELECT * FROM choferes WHERE ID_CHOFER = ?")){
             stmt.setLong(1,id);
             try (ResultSet rs = stmt.executeQuery()){
+
                 if (rs.next()){
-                    chofer = this.getChofer(rs);
-                    choferes.add(a);
+                    chofer= this.getChofer(rs);
                 }
             }
 
-        }
+            }
+
         return chofer;
     }
 
@@ -54,12 +55,12 @@ public class ChoferesRepository implements IRepository<Chofer>{
 
         if (chofer.getId() != null && chofer.getId() > 0 ){
             sql = "update choferes set nombre=?, ap_paterno=?, "+
-                    "ap_materno=?, licencia=?, telefon=?, "+
+                    "ap_materno=?, licencia=?, telefono=?, "+
                     "fecha_nacimiento=?, disponibilidad=?, "+
                     "where id_chofer=?";
         }else {
             sql = "insert into choferes(id_chofer, nombre," +
-                    "ap_paterno, ap_materno, licencia, telefon, " +
+                    "ap_paterno, ap_materno, licencia, telefono, " +
                     "fecha_nacimiento, disponibilidad)"+
                     "values(-1,?,?,?,?,?,?,?)";
         }
@@ -101,7 +102,7 @@ public class ChoferesRepository implements IRepository<Chofer>{
         a.setApPaterno(rs.getString("AP_PATERNO"));
         a.setApMaterno(rs.getString("AP_MATERNO"));
         a.setLicencias(rs.getString("LICENCIA"));
-        a.setTelefono(rs.getString("TELEFON"));
+        a.setTelefono(rs.getString("TELEFONO"));
         a.setFechaNacimiento(rs.getDate("FECHA_NACIMIENTO").toLocalDate());
         a.setDisponibilidad(rs.getBoolean("DISPONIBILIDAD"));
         return  a;

@@ -29,7 +29,7 @@ public class ChoferesService implements IServis<Chofer> {
     @Override
     public Optional<Chofer> getById(Long id) {
         try {
-            return Optional.ofNullable(choferesRepo.getById());
+            return Optional.ofNullable(choferesRepo.getById(id));
         }catch (SQLException e){
             throw new RuntimeException(e.getMessage(), e.getCause());
         }
