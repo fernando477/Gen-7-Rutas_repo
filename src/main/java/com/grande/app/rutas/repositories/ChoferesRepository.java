@@ -56,7 +56,7 @@ public class ChoferesRepository implements IRepository<Chofer>{
         if (chofer.getId() != null && chofer.getId() > 0 ){
             sql = "update choferes set nombre=?, ap_paterno=?, "+
                     "ap_materno=?, licencia=?, telefono=?, "+
-                    "fecha_nacimiento=?, disponibilidad=?, "+
+                    "fecha_nacimiento=?, disponibilidad=? "+
                     "where id_chofer=?";
         }else {
             sql = "insert into choferes(id_chofer, nombre," +
@@ -68,8 +68,9 @@ public class ChoferesRepository implements IRepository<Chofer>{
             if (chofer.getId() != null && chofer.getId() > 0){
                 stmt.setString(1,chofer.getNombre());
                 stmt.setString(2, chofer.getApPaterno());
-                stmt.setString(2, chofer.getLicencias());
-                stmt.setString(3, chofer.getTelefono());
+                stmt.setString(3, chofer.getApMaterno());
+                stmt.setString(4, chofer.getLicencias());
+                stmt.setString(5, chofer.getTelefono());
                 stmt.setDate(6, Date
                         .valueOf(chofer.getFechaNacimiento()));
                 stmt.setInt(7, chofer.getDisponibilidad() ? 1:0);
