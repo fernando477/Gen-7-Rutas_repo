@@ -5,6 +5,7 @@
 <%
     //recuperamos la lista de choferes que seteamos en el request desde el servlet
     List<Camion> camiones =  (List<Camion>) request.getAttribute("camiones");
+
 %>
 
 <!DOCTYPE html>
