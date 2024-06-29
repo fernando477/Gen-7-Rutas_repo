@@ -37,15 +37,6 @@ public class AltaChoferServlet extends HttpServlet {
         String telefono = req.getParameter("telefono");
         String fechaNacimiento = req.getParameter("fechaNacimiento");
 
-        LocalDate fecha;
-
-        try {
-            fecha = LocalDate.parse(fechaNacimiento,
-                    DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-
-        }catch (DateTimeParseException e){
-            fecha = null;
-        }
 
         String checkbook[];
         checkbook = req.getParameterValues("disponibilidad");
@@ -79,7 +70,7 @@ public class AltaChoferServlet extends HttpServlet {
             chofer.setApMaterno(apMaterno);
             chofer.setLicencias(licencia);
             chofer.setTelefono(telefono);
-            chofer.setFechaNacimiento(fecha);
+            chofer.setFechaNacimiento(LocalDate.parse(fechaNacimiento));
             chofer.setDisponibilidad(habilitar);
             service.guardar(chofer);
             resp.sendRedirect(req.getContextPath()+ "/choferes/listar");

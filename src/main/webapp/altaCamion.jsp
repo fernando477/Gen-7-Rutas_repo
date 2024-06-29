@@ -4,6 +4,9 @@
 
 <%
 Map<String,String> errores = (Map<String,String>) request.getAttribute("errores");
+
+int inicio = 2004;
+int fin = 2044;
 %>
 
 
@@ -81,7 +84,7 @@ Map<String,String> errores = (Map<String,String>) request.getAttribute("errores"
 
         <div class="row">
             <div class="col-12">
-                <h2>listado Formulario de Camiones</h2>
+                <h2>Formulario de Camiones</h2>
             </div>
 
 
@@ -97,40 +100,52 @@ Map<String,String> errores = (Map<String,String>) request.getAttribute("errores"
         <% } %>
 
         <div class="row">
-            <form action="<%=request.getContextPath()%>/choferes/alta" method="post">
+            <form action="<%=request.getContextPath()%>/camiones/alta" method="post">
                 <div class="col-md-12">
                     <div class="form_group">
-                        <label for="">Nombre</label>
-                        <input type="text" name="nombre" id="nombre" class="form-control" value="${param.nombre}">
+                        <label for="">Matricula</label>
+                        <input type="text" name="matricula" id="matricula" class="form-control" value="${param.matricula}">
 
-                        <% if (errores != null && errores.containsKey("nombre")){ %>
-                            out.println("<span class='text_danger'>" + errores.get("nombre") + "</span>");
+                        <% if (errores != null && errores.containsKey("matricula")){ %>
+                            out.println("<span class='text_danger'>" + errores.get("matricula") + "</span>");
 
                             <% } %>
                     </div>
 
                     <div class="form_group">
-                        <label for="">apPaterno</label>
-                        <input type="text" name="apPaterno" id="apPaterno" class="form-control" value="${param.apPaterno}">
+                        <label for="">tipoCamion</label>
+                        <input type="text" name="tipoCamion" id="tipoCamion" class="form-control" value="${param.tipoCamion}">
+                                        <select name="tipoCamion" id="tipoCamion" class="form-control">
+                                            <option value="">seleccionar</option>
+                                            <% for(Camion c: camiones){ %>
+                                                <option value="<%=c.getId()%>"><%=c.getMatricula%></option>
+                                            <% } %>
 
-                        <% if (errores != null && errores.containsKey("nombre")){ %>
-                            out.println("<span class='text_danger'>" + errores.get("apPaterno") + "</span>");
+                                        </select>
+                        <% if (errores != null && errores.containsKey("tipoCamion")){ %>
+                            out.println("<span class='text_danger'>" + errores.get("tipoCamion") + "</span>");
 
                              <% } %>
                     </div>
 
                     <div class="form_group">
-                        <label for="">apMaterno</label>
-                        <input type="text" name="apMaterno" id="apMaterno" class="form-control" value="${param.apMaterno}">
+                        <label for="">modelo</label>
 
-                        <% if (errores != null && errores.containsKey("apPaterno")){ %>
-                            out.println("<span class='text_danger'>" + errores.get("apMaterno") + "</span>");
+                            <select name="modelo" class="form-control">
+                                <option value="">Año</option>
+                                <% for (int i = inicio; i <= fin; i++) {%>
+                                    <option value="<%= i %>"><%= i %></option>
+                                <% } %>
+                            </select>
+
+                        <% if (errores != null && errores.containsKey("modelo")){ %>
+                            out.println("<span class='text_danger'>" + errores.get("modelo") + "</span>");
                              <% } %>
                     </div>
 
                     <div class="form_group">
-                        <label for="">licencia</label>
-                        <input type="text" name="licencia" id="licencia" class="form-control" value="${param.licencia}">
+                        <label for="">Marca</label>
+                        <input type="text" name="Marca" id="Marca" class="form-control" value="${param.marca}">
 
                         <% if (errores != null && errores.containsKey("apLicencia")){ %>
                             out.println("<span class='text_danger'>" + errores.get("apLicencia") + "</span>");
@@ -138,26 +153,26 @@ Map<String,String> errores = (Map<String,String>) request.getAttribute("errores"
                     </div>
 
                      <div class="form_group">
-                        <label for="">telefono</label>
-                        <input type="text" name="telefono" id="telefono" class="form-control" value="${param.telefono}">
+                        <label for="">capacidad</label>
+                        <input type="text" name="capacidad" id="capacidad" class="form-control" value="${param.capacidad}">
 
-                        <% if (errores != null && errores.containsKey("telefono")){ %>
-                            out.println("<span class='text_danger'>" + errores.get("telefono") + "</span>");
+                        <% if (errores != null && errores.containsKey("capacidad")){ %>
+                            out.println("<span class='text_danger'>" + errores.get("capacidad") + "</span>");
 
                              <% } %>
                     </div>
 
                     <div class="form_group">
-                        <label for="">Fecha nacimiento</label>
-                        <input type="text" name="fechaNacimiento" id="fechaNacimiento" class="form-control" value="${param.fechaNacimiento}">
+                        <label for="">kilometraje</label>
+                        <input type="text" name="kilometraje" id="kilometraje" class="form-control" value="${param.kilometraje}">
 
-                        <% if (errores != null && errores.containsKey("fechaNacimiento")){ %>
-                            out.println("<span class='text_danger'>" + errores.get("fechaNacimiento") + "</span>");
+                        <% if (errores != null && errores.containsKey("kilometraje")){ %>
+                            out.println("<span class='text_danger'>" + errores.get("kilometraje") + "</span>");
                              <% } %>
                     </div>
 
                     <div class="form_group">
-                        <label for="nombre">disponibilidad</label>
+                        <label for="">disponibilidad</label>
                         <input type="checkbox" name="disponibilidad" id="disponibilidad" class="form-checj-input" value="${param.disponibilidad}">
 
                     </div>

@@ -3,13 +3,13 @@
 <%@page import="com.grande.app.rutas.models.*" %>
 
 <%
-//recuperamos la lista de choferes que seteamos en el request desde el servlet
-List<Chofer> choferes =  (List<Chofer>) request.getAttribute("choferes");
+    // Recuperamos la lista de choferes y los errores que seteamos en el request desde el servlet
+    String errores = (String) request.getAttribute("errores");
+    List<Chofer> choferes = (List<Chofer>) request.getAttribute("choferes");
 %>
 
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,8 +19,6 @@ List<Chofer> choferes =  (List<Chofer>) request.getAttribute("choferes");
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-
 </head>
 <body>
 
@@ -73,62 +71,66 @@ List<Chofer> choferes =  (List<Chofer>) request.getAttribute("choferes");
    </div><!-- /.container-fluid -->
 </nav>
 
+<div class="container">
 
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Listado De Choferes</h2>
+        </div>
+        <div class="col-md-6 text-right">
+            <a href="<%=request.getContextPath()%>/choferes/alta" class="btn btn-success">Alta Chofer</a>
+        </div>
+    </div>
 
- <div class="container">
-         <div class="row">
-             <div class="col-6">
-                 <h2>listado De choferes</h2>
-             </div>
-             <div class="com-6">
-<a href="<%=request.getContextPath()%>/choferes/alta" class="btn btn-success">Alta chofer</a>             </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Ap. Paterno</th>
+                            <th>Ap. Materno</th>
+                            <th>Licencia</th>
+                            <th>Teléfono</th>
+                            <th>Detalle</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-         </div>
-         <div class="row">
-             <div class="col-12">
-                 <div class="table-responsive">
-                     <table class="table table-border table-striped" width="100%" cellspacing="0">
-                         <thead>
-                             <tr>
-                                 <th>Id</th>
-                                 <th>nombre</th>
-                                 <th>Ap. Paterno</th>
-                                 <th>Ap. Materno</th>
-                                 <th>licencia</th>
-                                 <th>Telefono</th>
-                                 <th>cadena</th>
-                                 <th>cadena</th>
-                                 <th>cadena</th>
-                             </tr>
-                         </thead>
-                         <tbody>
-                             <% for(Chofer c: choferes){ %>
-                                 <tr>
-                                     <td><%=c.getId()%></td>
-                                     <td><%=c.getNombre()%></td>
-                                     <td><%=c.getApPaterno()%></td>
-                                     <td><%=c.getApMaterno()%></td>
-                                     <td><%=c.getLicencias()%></td>
-                                     <td><%=c.getTelefono()%></td>
-                                     <td>
-                                         <a href="<%=request.getContextPath()%>/choferes/detalle?id=<%=c.getId()%>" class="btn btn-success">Detalle</a>
-                                     </td>
-                                     <td>
-                                         <a href="<%=request.getContextPath()%>/choferes/editar?id=<%=c.getId()%>" class="btn btn-primary">Editar</a>
-                                     </td>
-                                     <td>
-                                         <a href="<%=request.getContextPath()%>/choferes/eliminar?id=<%=c.getId()%>" class="btn btn-danger">Eliminar</a>
-                                     </td>
-                                 </tr>
-                                 <% } %>
+                            <% for(Chofer c : choferes) { %>
+                                <tr>
+                                    <td><%= c.getId() %></td>
+                                    <td><%= c.getNombre() %></td>
+                                    <td><%= c.getApPaterno() %></td>
+                                    <td><%= c.getApMaterno() %></td>
+                                    <td><%= c.getLicencias() %></td>
+                                    <td><%= c.getTelefono() %></td>
+                                    <td>
+                                        <a href="<%= request.getContextPath() %>/choferes/detalle?id=<%= c.getId() %>" class="btn btn-success">Detalle</a>
+                                    </td>
+                                    <td>
+                                        <a href="<%= request.getContextPath() %>/choferes/editar?id=<%= c.getId() %>" class="btn btn-primary">Editar</a>
+                                    </td>
+                                    <td>
+                                        <a href="<%= request.getContextPath() %>/choferes/eliminar?id=<%= c.getId() %>" class="btn btn-danger">Eliminar</a>
+                                    </td>
+                                </tr>
+                                    <% if (errores != null) { %>
+                                        <div class="alert alert-danger"><%= errores %></div>
+                                    <% } %>
+                            <% } %>
 
-                         </tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-                     </table>
-                 </div>
-             </div>
-         </div>
+</div>
 
-     </div>
 </body>
 </html>

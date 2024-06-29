@@ -15,8 +15,8 @@
     </properties>
 
     <packaging>war</packaging>
-    <dependencies>
 
+    <dependencies>
         <!-- https://mvnrepository.com/artifact/jakarta.platform/jakarta.jakartaee-api -->
         <dependency>
             <groupId>jakarta.platform</groupId>

@@ -71,8 +71,7 @@ public class ChoferesRepository implements IRepository<Chofer>{
                 stmt.setString(3, chofer.getApMaterno());
                 stmt.setString(4, chofer.getLicencias());
                 stmt.setString(5, chofer.getTelefono());
-                stmt.setDate(6, Date
-                        .valueOf(chofer.getFechaNacimiento()));
+                stmt.setDate(6, Date.valueOf(chofer.getFechaNacimiento()));
                 stmt.setInt(7, chofer.getDisponibilidad() ? 1:0);
                 stmt.setLong(8, chofer.getId());
 
@@ -82,8 +81,7 @@ public class ChoferesRepository implements IRepository<Chofer>{
                 stmt.setString(3, chofer.getApMaterno());
                 stmt.setString(4,chofer.getLicencias());
                 stmt.setString(5, chofer.getTelefono());
-                stmt.setDate(6, Date
-                        .valueOf(chofer.getFechaNacimiento()));
+                stmt.setDate(6, Date.valueOf(chofer.getFechaNacimiento()));
                 stmt.setInt(7, chofer.getDisponibilidad() ? 1:0);
             }
             stmt.executeUpdate();

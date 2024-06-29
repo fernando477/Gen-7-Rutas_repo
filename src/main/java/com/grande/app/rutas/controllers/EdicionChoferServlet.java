@@ -25,6 +25,7 @@ public class EdicionChoferServlet extends HttpServlet {
         Connection conn = (Connection) req.getAttribute("conn");
         IServis<Chofer> service = new ChoferesService(conn);
 
+
         String nombre = req.getParameter("nombre");
         String apPaterno = req.getParameter("apPaterno");
         String apMaterno = req.getParameter("apMaterno");
@@ -88,6 +89,7 @@ public class EdicionChoferServlet extends HttpServlet {
             req.setAttribute("error", errores);
             getServletContext().getRequestDispatcher("/edicionChofer.jsp").forward(req,resp);
         }
+
     }
 
     @Override

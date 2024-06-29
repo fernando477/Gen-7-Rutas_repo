@@ -95,7 +95,6 @@
                             <th>Marca</th>
                             <th>Capacidad</th>
                             <th>Kilometro</th>
-                            <th>Disponibilidad</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -109,7 +108,6 @@
                                 <td><%=c.getMarca()%></td>
                                 <td><%=c.getCapacidad()%></td>
                                 <td><%=c.getKilometro()%></td>
-                                <td><%=c.getDisponibilidad()%></td>
                                 <td>
                                     <a href="<%=request.getContextPath()%>/choferes/detalle?id=<%=c.getId()%>" class="btn btn-success">Detalle</a>
                                     <a href="<%=request.getContextPath()%>/choferes/editar?id=<%=c.getId()%>" class="btn btn-primary">Editar</a>

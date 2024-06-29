@@ -149,7 +149,7 @@ Map<String,String> errores = (Map<String,String>) request.getAttribute("errores"
 
                     <div class="form_group">
                         <label for="">Fecha nacimiento</label>
-                        <input type="text" name="fechaNacimiento" id="fechaNacimiento" class="form-control" value="${param.fechaNacimiento}">
+                        <input type="date" name="fechaNacimiento" id="fechaNacimiento" class="form-control" value="${param.fechaNacimiento}" min="1888-01-01" max="2018-12-31">
 
                         <% if (errores != null && errores.containsKey("fechaNacimiento")){ %>
                             out.println("<span class='text_danger'>" + errores.get("fechaNacimiento") + "</span>");

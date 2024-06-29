@@ -15,6 +15,7 @@ List<Chofer> choferes =  (List<Chofer>) request.getAttribute("choferes");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
@@ -84,12 +85,12 @@ List<Chofer> choferes =  (List<Chofer>) request.getAttribute("choferes");
         <div class="col-md-12">
             <h2>iniciar Ruta</h2>
             <div Style="display: block;">
-                <input type ="text" id=" textEsOD"></input::text>
+                <input type ="text" name=" " id=" textEsOD" class="form-control">
             </div>
         </div>
     </div>
     <div class="row">
-        izquierda
+
         <div class="col-md-6">
             <div class="form-group">
                 <label for="">Chofer</label>
@@ -105,7 +106,7 @@ List<Chofer> choferes =  (List<Chofer>) request.getAttribute("choferes");
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-9">
-                        <label fro="">origen</label>
+                        <label for="">origen</label>
                         <input type="text" name="origen" id="origen" class="form-control">
                         <input type="hidden" name="idOrigen" id="idOrigen" class="form-control">
                     </div>
@@ -117,18 +118,18 @@ List<Chofer> choferes =  (List<Chofer>) request.getAttribute("choferes");
             </div>
 
             <div class="form-group">
-                <label>Fecha salida</label>
+                <label for="">Fecha salida</label>
                 <input type="text" name="FSalida" id="FSalida" class="form-control">
             </div>
 
             <div class="form-group">
-                <label>Distancia</label>
+                <label for="">Distancia</label>
                 <input type="text" name="distancia" id="distancia" class="form-control">
             </div>
 
         </div>
 
-        derecha
+
         <div class="col-md-6">
             <div class="form-group">
                 <label for="">Camion</label>
@@ -144,7 +145,7 @@ List<Chofer> choferes =  (List<Chofer>) request.getAttribute("choferes");
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-9">
-                        <label fro="">Destino</label>
+                        <label for="">Destino</label>
                         <input type="text" name="destino" id="destino" class="form-control">
                         <input type="hidden" name="idDestino" id="idDestino" class="form-control">
                     </div>
@@ -156,12 +157,12 @@ List<Chofer> choferes =  (List<Chofer>) request.getAttribute("choferes");
             </div>
 
             <div class="form-group">
-                <label>Fecha estimada de llegada</label>
+                <label for="">Fecha estimada de llegada</label>
                 <input type="text" name="FELlegada" id="FELlegada" class="form-control">
             </div>
 
             <div class="form-group">
-                <label>Capacidad Camion</label>
+                <label for="">Capacidad Camion</label>
                 <input type="text" name="capCamion" id="capCamion" class="form-control">
             </div>
 
@@ -193,28 +194,28 @@ List<Chofer> choferes =  (List<Chofer>) request.getAttribute("choferes");
                         <div class="col-md-12">
 
                             <div class="form-group">
-                                <label>Calle</label>
+                                <label for="">Calle</label>
                               <input type="text" name ="Calle" id="Calle" class= "form-group"></input>
                             </div>
 
                             <div class="form-group">
-                                <label>Numero</label>
+                                <label for="">Numero</label>
                               <input type="text" name ="Numero" id="Numero" class= "form-group"></input>
                             </div>
                             <div class="form-group">
-                                <label>Colonia</label>
+                                <label for="" >Colonia</label>
                               <input type="text" name ="colonia" id="Colonia" class= "form-group"></input>
                             </div>
                             <div class="form-group">
-                                <label>Ciudad</label>
+                                <label for="">Ciudad</label>
                               <input type="text" name ="Ciudad" id="Ciudad" class= "form-group"></input>
                             </div>
                             <div class="form-group">
-                                <label>Estado</label>
+                                <label for="">Estado</label>
                               <input type ="text" name ="Estado" id="Estado" class= "form-group"></input>
                             </div>
                             <div class="form-group">
-                                <label>CP</label>
+                                <label for="">CP</label>
                               <input type="text" name ="CP" id="CP" class= "form-group"></input>
                             </div>
                         </div>
@@ -230,6 +231,9 @@ List<Chofer> choferes =  (List<Chofer>) request.getAttribute("choferes");
                             <div class="col-md-4 col-md-offset-2">
                                 <button class="btn btn-default" data-dismiss="modal">Cerrar</button>
                             </div>
+
+
+
                         </div>
                     </div>
                 </div>
@@ -307,6 +311,47 @@ List<Chofer> choferes =  (List<Chofer>) request.getAttribute("choferes");
             $("#myModal").modal('hide');
         }
     }
+
+    function btnGuardarDir(){
+
+        var calle = $("#Calle").val();
+        var numero = $("#Numero").val();
+        var colonia = $("#Colonia").val();
+        var ciudad = $("#Ciudad").val();
+        var estado = $("#Estado").val();
+        var cp = $("#CP").val();
+
+
+        $.ajax({
+    type: 'POST',
+    url: "http://localhost:8080/Gen7-API/api/direcciones",  // Asegúrate de especificar la URL correcta aquí
+    data: {
+        "calle": calle,
+        "numero": numero,
+        "colonia": colonia,
+        "ciudad": ciudad,
+        "estado": estado,
+        "cp": cp
+    },
+
+    success: function(resp) {
+
+        console.log(resp);
+        $("#myModal").modal('hide');
+        if ($("#txtEsOD").val() == 1) {
+            $("#idOrigen").val(resp.message);
+        } else {
+            $("#idDestino").val(resp.message);
+        }
+    },
+    error: function(xhr, status, error) {
+        console.error("Error en la solicitud AJAX:", status, error);
+    }
+
+});
+
+    }
+
 </script>
 
 

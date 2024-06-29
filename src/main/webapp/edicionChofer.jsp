@@ -118,7 +118,8 @@ String disponible = estado == true ? "checked" : "";
 
                     <div class="form_group">
                         <label for="">apPaterno</label>
-<input type="text" name="apPaterno" id="apPaterno" class="form-control" value="<%=chofer.getApPaterno() != null?  chofer.getApPaterno() : "" %>">                        <% if (errores != null && errores.containsKey("nombre")){ %>
+<input type="text" name="apPaterno" id="apPaterno" class="form-control" value="<%=chofer.getApPaterno() != null?  chofer.getApPaterno() : "" %>">
+             <% if (errores != null && errores.containsKey("nombre")){ %>
                             out.println("<span class='text_danger'>" + errores.get("apPaterno") + "</span>");
 
                              <% } %>
@@ -126,7 +127,8 @@ String disponible = estado == true ? "checked" : "";
 
                     <div class="form_group">
                         <label for="">apMaterno</label>
-<input type="text" name="apMaterno" id="apMaterno" class="form-control" value="<%=chofer.getApMaterno() != null?  chofer.getApMaterno() : "" %>">                        <% if (errores != null && errores.containsKey("apPaterno")){ %>
+<input type="text" name="apMaterno" id="apMaterno" class="form-control" value="<%=chofer.getApMaterno() != null?  chofer.getApMaterno() : "" %>">
+                      <% if (errores != null && errores.containsKey("apPaterno")){ %>
                             out.println("<span class='text_danger'>" + errores.get("apMaterno") + "</span>");
                              <% } %>
                     </div>

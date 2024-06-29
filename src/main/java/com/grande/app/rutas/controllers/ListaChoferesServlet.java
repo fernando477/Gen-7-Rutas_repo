@@ -30,7 +30,9 @@ public class ListaChoferesServlet extends HttpServlet {
             resp.getWriter().println("<h1>" + c.getId()+ "->"
             +c.getNombre()+ "->" + c.getApPaterno()+"</h1>");
         }*/
+
         req.setAttribute("choferes", choferes);
         getServletContext().getRequestDispatcher("/listaChoferes.jsp").forward(req, resp);
     }
+
 }
